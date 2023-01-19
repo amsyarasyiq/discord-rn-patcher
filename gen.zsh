@@ -19,7 +19,7 @@ wget -nv "https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.6.1.jar"
 
 ## Download hermes native libraries
 cd /tmp/aliucord/downloads
-wget -nv "https://github.com/amsyarasyiq/hermes/releases/download/vanilla/android.zip" -O /tmp/aliucord/downloads/android.zip
+wget -nv "https://github.com/amsyarasyiq/hermes/releases/download/aliuhermes/android.zip" -O /tmp/aliucord/downloads/android.zip
 unzip android.zip
 
 ## Iterate over all discord architectures to download apks and replace native libs
