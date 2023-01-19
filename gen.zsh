@@ -16,8 +16,6 @@ mkdir -p /tmp/aliucord/downloads
 mkdir /tmp/aliucord/tools
 wget -nv "https://github.com/patrickfav/uber-apk-signer/releases/download/v1.2.1/uber-apk-signer-1.2.1.jar" -O /tmp/aliucord/tools/uber-apk-signer.jar
 wget -nv "https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.6.1.jar" -O /tmp/aliucord/tools/apktool.jar
-cp hbcdump /tmp/aliucord/tools/hbcdump
-chmod +x /tmp/aliucord/tools/hbcdump
 
 ## Download hermes native libraries
 cd /tmp/aliucord/downloads
@@ -91,9 +89,3 @@ wget -nv "https://aliucord.com/download/discord?v=$discordver&split=config.xxhdp
 
 ## Sign all apks
 java -jar /tmp/aliucord/tools/uber-apk-signer.jar --apks /tmp/aliucord/apks/unsigned/ --allowResign --out /tmp/aliucord/apks/
-
-## Disassemble .bundle file
-cd /tmp/aliucord/downloads
-unzip -p base.apk assets/index.android.bundle > index.android.bundle
-/tmp/aliucord/tools/hbcdump index.android.bundle -human -pretty-disassemble -out=bytecode.hbc -c="disassemble;quit"
-cp bytecode.hbc ../apks/
