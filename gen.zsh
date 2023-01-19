@@ -21,7 +21,7 @@ chmod +x /tmp/aliucord/tools/hbcdump
 
 ## Download hermes native libraries
 cd /tmp/aliucord/downloads
-wget -nv "https://nightly.link/Aliucord/hermes/workflows/ci/0.11.0-aliucord/android.zip" -O /tmp/aliucord/downloads/android.zip
+wget -nv "https://github.com/amsyarasyiq/hermes/releases/download/vanilla/android.zip" -O /tmp/aliucord/downloads/android.zip
 unzip android.zip
 
 ## Iterate over all discord architectures to download apks and replace native libs
