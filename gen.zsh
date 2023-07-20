@@ -27,13 +27,15 @@ mkdir /tmp/aliucord/apks/unsigned -p
 architectures_url=(x86 x86_64 arm64_v8a armeabi_v7a)
 architectures_zip=(x86 x86_64 arm64-v8a armeabi-v7a)
 
+dir
+
 for i in {1..$#architectures_url}; do
 	# Download config apk
 	wget -nv "https://aliucord.com/download/discord?v=$discordver&split=config.${architectures_url[i]}" -O "/tmp/aliucord/apks/unsigned/config.${architectures_url[i]}.apk"
 
 	# configs need libs/ folder
 	mkdir -p "lib/${architectures_zip[i]}"
-	cp "jni/${architectures_zip[i]}/libhermes.so" "lib/${architectures_zip[i]}/libhermes.so"
+	cp "hermes-release/jni/${architectures_zip[i]}/libhermes.so" "lib/${architectures_zip[i]}/libhermes.so"
 
 	# Replace libs in config split
 	zip -0u "/tmp/aliucord/apks/unsigned/config.${architectures_url[i]}.apk" "lib/${architectures_zip[i]}/libhermes.so"
