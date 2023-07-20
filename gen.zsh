@@ -20,14 +20,12 @@ wget -nv "https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.6.1.jar"
 ## Download hermes native libraries
 cd /tmp/aliucord/downloads
 wget -nv "https://github.com/pyoncord/hermes/releases/download/pyonhermes/hermes-release.aar" -O /tmp/aliucord/downloads/hermes-release.aar
-unzip hermes-release.aar
+unzip -o /tmp/aliucord/downloads/hermes-release.aar
 
 ## Iterate over all discord architectures to download apks and replace native libs
 mkdir /tmp/aliucord/apks/unsigned -p
 architectures_url=(x86 x86_64 arm64_v8a armeabi_v7a)
 architectures_zip=(x86 x86_64 arm64-v8a armeabi-v7a)
-
-dir
 
 for i in {1..$#architectures_url}; do
 	# Download config apk
@@ -35,7 +33,7 @@ for i in {1..$#architectures_url}; do
 
 	# configs need libs/ folder
 	mkdir -p "lib/${architectures_zip[i]}"
-	cp "/tmp/aliucord/downloads/hermes-release/jni/${architectures_zip[i]}/libhermes.so" "lib/${architectures_zip[i]}/libhermes.so"
+	cp "jni/${architectures_zip[i]}/libhermes.so" "lib/${architectures_zip[i]}/libhermes.so"
 
 	# Replace libs in config split
 	zip -0u "/tmp/aliucord/apks/unsigned/config.${architectures_url[i]}.apk" "lib/${architectures_zip[i]}/libhermes.so"
