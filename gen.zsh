@@ -19,7 +19,7 @@ wget -nv "https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.6.1.jar"
 
 ## Download hermes native libraries
 cd /tmp/aliucord/downloads
-wget -nv "https://github.com/amsyarasyiq/hermes/releases/download/aliuhermes/android.zip" -O /tmp/aliucord/downloads/android.zip
+wget -nv "https://github.com/pyoncord/hermes/releases/download/pyonhermes/hermes-release.aar" -O /tmp/aliucord/downloads/hermes-release.aar
 unzip android.zip
 
 ## Iterate over all discord architectures to download apks and replace native libs
@@ -27,8 +27,6 @@ mkdir /tmp/aliucord/apks/unsigned -p
 architectures_url=(x86 x86_64 arm64_v8a armeabi_v7a)
 architectures_zip=(x86 x86_64 arm64-v8a armeabi-v7a)
 
-unzip -o /tmp/aliucord/downloads/hermes-cppruntime-release.aar
-unzip -o /tmp/aliucord/downloads/hermes-release.aar
 for i in {1..$#architectures_url}; do
 	# Download config apk
 	wget -nv "https://aliucord.com/download/discord?v=$discordver&split=config.${architectures_url[i]}" -O "/tmp/aliucord/apks/unsigned/config.${architectures_url[i]}.apk"
@@ -42,10 +40,6 @@ for i in {1..$#architectures_url}; do
 	zip -0u "/tmp/aliucord/apks/unsigned/config.${architectures_url[i]}.apk" "lib/${architectures_zip[i]}/libhermes.so"
 	zip -0u "/tmp/aliucord/apks/unsigned/config.${architectures_url[i]}.apk" "lib/${architectures_zip[i]}/libc++_shared.so"
 done
-
-## Download AliucordNative
-wget -nv "https://nightly.link/Aliucord/AliucordNative/workflows/android/main/AliucordNative.zip" -O /tmp/aliucord/downloads/AliucordNative.zip
-unzip /tmp/aliucord/downloads/AliucordNative.zip
 
 ## Download and patch base apk
 wget -nv "https://aliucord.com/download/discord?v=$discordver" -O /tmp/aliucord/downloads/base.apk
@@ -80,7 +74,7 @@ done
 cp /tmp/aliucord/downloads/base.apk /tmp/aliucord/apks/unsigned/base.apk
 
 ## Download rest of the splits
-# Lanuage splits
+# Language splits
 wget -nv "https://aliucord.com/download/discord?v=$discordver&split=config.en" -O /tmp/aliucord/apks/unsigned/config.en.apk
 # wget -nv "https://aliucord.com/download/discord?v=$discordver&split=config.de" -O /tmp/aliucord/apks/unsigned/config.de.apk
 # DPI Splits
